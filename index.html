@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T7 Bank</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="text-area">
+        <h1 id="color" class="text-center">Welcome To T-7 Bank</h1>
+
+        <div class="submit-area">
+            <h4>Login</h4>
+            <input type="text" class="form-control" placeholder="Email">
+            <br>
+            <input type="password" class="form-control"placeholder="password">
+            <br>
+            <button id="btnsubmit" class="btn btn-success">Submit</button>
+            <br>
+        </div>
+    </div>
+
+    <div id="tran">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="deposite status"><h5>Deposite</h5>
+                    <h2>$ <span id="current-deposite">00</span></h2></div>
+                    
+            </div>
+            <div class="col-md-4">
+                <div class="withdrow status "><h5>Withdrow</h5>
+                    <h2>$ <span id="current-withdrow">00</span> </h2></div>
+            </div>
+            <div class="col-md-4">
+                <div class="balance status "><h5>Balance</h5>
+                    <h2>$ <span id="current-balance">1200</span> </h2></div>
+            </div>
+        </div>
+
+        <div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="submit-area"><h4>Deposite</h4>
+                        <input id="depositemoney" type="text" class="form-control" placeholder="$ amount you want to deposite">
+                        <br>
+                        <button id="add-deposite" class="btn btn-success">Deposite</button></div>
+                </div>
+                <div class="col-md-6">
+                    <div class="submit-area"><h4>Withdrow</h4>
+                        <input id="withdrowmoney" type="text" class="form-control" placeholder="$ amount you want to withdrow">
+                        <br>
+                        <button id="withdrow" class="btn btn-success">Withdrow</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        //its text area
+        var submit = document.getElementById('btnsubmit').addEventListener('click',function(){
+            var prant = document.getElementById('text-area');
+            prant.style.display='none';
+            var tran = document.getElementById('tran');
+            tran.style.display= 'block'
+        })
+
+        //its deposite area
+        var deposite = document.getElementById('add-deposite').addEventListener('click',function(){
+            var depositemoney = document.getElementById('depositemoney').value;
+            var depositenumber = parseFloat(depositemoney);
+
+            var currentdeposite = document.getElementById('current-deposite').innerText;
+            var currentdepositenumber = parseFloat(currentdeposite);
+            var total = depositenumber + currentdepositenumber;
+
+            document.getElementById('current-deposite').innerText= total;
+             
+           var currentbalance = document.getElementById('current-balance').innerText;
+           var currentbalancenumber = parseFloat(currentbalance);
+           var totalbalance = depositenumber + currentbalancenumber;
+
+           document.getElementById('current-balance').innerText = totalbalance;
+
+            document.getElementById('depositemoney').value="";
+            
+        })
+
+
+        //its withdrow 
+
+        var withdroww= document.getElementById('withdrow').addEventListener('click',function(){
+            var withdrowmoneyy = document.getElementById('withdrowmoney').value;
+            var withdrowmnumber = parseFloat(withdrowmoneyy);
+
+          //var currentwithdrow = document.getElementById('current-withdrow').innerText;
+          //var currentwithdrownumber = parseFloat(currentwithdrow);
+          //var totalwithdrow = withdrowmnumber + currentwithdrownumber;
+
+         // document.getElementById('current-withdrow').innerText = totalwithdrow;
+          
+         
+         // var currentbalance = document.getElementById('current-balance').innerText;
+          // var currentbalancenumber = parseFloat(currentbalance);
+          // var totalbalance = withdrowmnumber - currentbalancenumber;
+
+          // document.getElementById('current-balance').innerText = totalbalance;
+           
+           update("current-balance",withdrowmnumber);
+           update("current-withdrow",withdrowmnumber);
+          document.getElementById('withdrowmoney').value= "";
+
+        })
+
+        function update(id,withdrowmnumber){
+            var current = document.getElementById(id).innerText;
+            var currentnum = parseFloat(current);
+            var totalamount =  currentnum - withdrowmnumber;
+            document.getElementById(id).innerText= totalamount;
+        }
+    </script>
+    
+</body>
+</html>
